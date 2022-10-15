@@ -1,0 +1,15 @@
+- name: tool install 
+  dnf:
+    name:
+     - wget
+     - jq
+     - psmisc
+     - vim
+     - net-tools
+     - telnet
+     - yum-utils
+     - device-mapper-persistent-data
+     - lvm2
+     - git
+  tags: tool_install
+

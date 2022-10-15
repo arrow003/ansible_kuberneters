@@ -1,0 +1,4 @@
+- import_tasks: bootstrap_config.yml 
+- import_tasks: mkdir_kube.yml 
+- import_tasks: cp_kubeconfig.yml
+- import_tasks: create_bootstrap_secret.yml

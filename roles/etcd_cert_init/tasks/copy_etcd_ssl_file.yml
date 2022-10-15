@@ -1,0 +1,5 @@
+- name: copy etcd ssl file
+  copy:
+    src: etcd/ssl/
+    dest: /etc/etcd/ssl/
+  tags: copy_etcd_ssl_file

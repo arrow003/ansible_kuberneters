@@ -1,0 +1,15 @@
+- name: Unarchive kubernetes package
+  unarchive:
+    src: "/opt/kubernetes-server-linux-amd64.tar.gz"
+    dest: "/usr/local/bin/"
+    remote_src: yes
+    extra_opts:
+     - --strip-components=3
+    exclude:
+     - "*.tar"
+     - "*_tag"
+     - "*.org"
+     - "*.io"
+     - "*.com"
+     - "*.net"
+  tags: unarchive_kubernetes_package

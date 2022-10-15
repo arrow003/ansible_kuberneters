@@ -1,0 +1,3 @@
+- name: download etcd package
+  copy: src=etcd-v{{etcdVersion}}-linux-amd64.tar.gz dest=/opt
+  tags: get_etcd_package

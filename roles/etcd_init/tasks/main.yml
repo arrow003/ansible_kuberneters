@@ -1,0 +1,5 @@
+- import_tasks: get_etcd_package.yml 
+- import_tasks: unarchive_etcd_package.yml
+- import_tasks: check_etcd_version.yml
+- import_tasks: etcd_config.yml
+- import_tasks: etcd_start.yml

@@ -1,0 +1,7 @@
+- import_tasks: master_package_cfg.yml
+- import_tasks: kube-apiserver_cfg.yml
+- import_tasks: kube-apiserver_start.yml
+- import_tasks: kube-controller-manager_cfg.yml
+- import_tasks: kube-controller-manager_start.yml
+- import_tasks: kube-scheduler_cfg.yml
+- import_tasks: kube-scheduler_start.yml

@@ -1,0 +1,3 @@
+- name: copy kube-scheduler cfg 
+  copy: src=kube-scheduler.service dest=/usr/lib/systemd/system/
+  tags: kube-scheduler_cfg 

@@ -1,0 +1,6 @@
+- name: contained install 
+  dnf:
+    name:
+     - docker-ce-{{DockerVersion}}*
+     - docker-ce-cli-{{DockerVersion}}*
+  tags: contained_install

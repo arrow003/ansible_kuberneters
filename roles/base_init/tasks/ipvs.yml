@@ -1,0 +1,30 @@
+- name: ipvsadm install
+  dnf:
+    name:
+     - ipvsadm
+     - ipset
+     - sysstat
+     - conntrack
+     - libseccomp
+  tags: ipvs
+
+- name: ipvs set 1
+  shell: modprobe -- ip_vs && modprobe -- ip_vs_rr && modprobe -- ip_vs_wrr && modprobe -- ip_vs_sh
+  tags: ipvs
+
+- name: ipvs set 2
+  shell: modprobe -- nf_conntrack && modprobe -- nf_conntrack_ipv4
+  ignore_errors: yes
+  tags: ipvs
+
+- name: ipvs set 3
+  copy: src=ipvs.conf dest=/etc/modules-load.d/ owner=root group=root mode=0644
+  tags: ipvs 
+
+- name: init service systemd-modules-load
+  service:
+    name: systemd-modules-load
+    enabled: yes 
+    state: started
+  tags: ipvs 
+

@@ -1,0 +1,42 @@
+- name: kube-proxy config 1
+  shell: kubectl -n kube-system create serviceaccount kube-proxy
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+- name: kube-proxy config 2
+  shell: kubectl create clusterrolebinding system:kube-proxy         --clusterrole system:node-proxier         --serviceaccount kube-system:kube-proxy
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+- name: kube-proxy config 
+  shell: kubectl create clusterrolebinding anonymous-cluster-admin --clusterrole=cluster-admin --user=system:anonymous
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+- name: kube-proxy config 3
+  shell: kubectl config set-cluster kubernetes     --certificate-authority=/etc/kubernetes/pki/ca.pem     --embed-certs=true     --server=https://172.26.37.156:8443     --kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig 
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+- name: kube-proxy config 4
+  shell: JWT_TOKEN=$(kubectl -n kube-system get secret/$SECRET --output=jsonpath='{.data.token}' | base64 -d) && kubectl config set-credentials kubernetes     --token=${JWT_TOKEN}     --kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig 
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+- name: kube-proxy config 5
+  shell: kubectl config set-context kubernetes     --cluster=kubernetes     --user=kubernetes     --kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig 
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+- name: kube-proxy config 6
+  shell: kubectl config use-context kubernetes     --kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig 
+  ignore_errors: True
+  tags: kube-proxy_cfg
+
+
+- name: fetch kube-proxy config
+  fetch:
+    src: /etc/kubernetes/kube-proxy.kubeconfig
+    dest: kube-proxy.kubeconfig
+    flat: yes
+  tags: kube-proxy_cfg

@@ -1,0 +1,7 @@
+- name: check etcd version
+  shell: etcdctl version
+  register: result
+  tags: check_etcd_verison
+
+- debug:
+    var: result.stdout

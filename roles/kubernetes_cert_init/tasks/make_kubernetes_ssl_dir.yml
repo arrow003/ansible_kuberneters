@@ -1,0 +1,3 @@
+- name: make kubernetes ssl dir
+  shell: mkdir -p /etc/kubernetes/pki 
+  tags: make_kubernetes_ssl_dir

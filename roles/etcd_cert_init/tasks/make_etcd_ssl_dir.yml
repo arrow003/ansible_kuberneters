@@ -1,0 +1,3 @@
+- name: make etcd ssl dir
+  shell: mkdir -p /etc/etcd/ssl
+  tags: make_etcd_ssl_dir

@@ -1,0 +1,47 @@
+- name: master package config file 1
+  shell: kubectl config set-cluster kubernetes --certificate-authority=/etc/kubernetes/pki/ca.pem --embed-certs=true --server=https://172.26.37.156:8443 --kubeconfig=/etc/kubernetes/controller-manager.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 2
+  shell: kubectl config set-context system:kube-controller-manager@kubernetes --cluster=kubernetes --user=system:kube-controller-manager --kubeconfig=/etc/kubernetes/controller-manager.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 3
+  shell: kubectl config set-credentials system:kube-controller-manager --client-certificate=/etc/kubernetes/pki/controller-manager.pem --client-key=/etc/kubernetes/pki/controller-manager-key.pem --embed-certs=true --kubeconfig=/etc/kubernetes/controller-manager.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 4
+  shell: kubectl config use-context system:kube-controller-manager@kubernetes --kubeconfig=/etc/kubernetes/controller-manager.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 5
+  shell: kubectl config set-cluster kubernetes --certificate-authority=/etc/kubernetes/pki/ca.pem --embed-certs=true --server=https://172.26.37.156:8443 --kubeconfig=/etc/kubernetes/scheduler.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 6
+  shell: kubectl config set-credentials system:kube-scheduler --client-certificate=/etc/kubernetes/pki/scheduler.pem --client-key=/etc/kubernetes/pki/scheduler-key.pem --embed-certs=true --kubeconfig=/etc/kubernetes/scheduler.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 7
+  shell: kubectl config set-context system:kube-scheduler@kubernetes --cluster=kubernetes --user=system:kube-scheduler --kubeconfig=/etc/kubernetes/scheduler.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 8
+  shell: kubectl config use-context system:kube-scheduler@kubernetes --kubeconfig=/etc/kubernetes/scheduler.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 9
+  shell: kubectl config set-cluster kubernetes  --certificate-authority=/etc/kubernetes/pki/ca.pem  --embed-certs=true  --server=https://172.26.37.156:8443  --kubeconfig=/etc/kubernetes/admin.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 10
+  shell: kubectl config set-credentials kubernetes-admin  --client-certificate=/etc/kubernetes/pki/admin.pem  --client-key=/etc/kubernetes/pki/admin-key.pem  --embed-certs=true  --kubeconfig=/etc/kubernetes/admin.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 11
+  shell: kubectl config set-context kubernetes-admin@kubernetes  --cluster=kubernetes  --user=kubernetes-admin  --kubeconfig=/etc/kubernetes/admin.kubeconfig
+  tags: master_package_cfg
+
+- name: master package config file 12
+  shell: kubectl config use-context kubernetes-admin@kubernetes  --kubeconfig=/etc/kubernetes/admin.kubeconfig
+  tags: master_package_cfg

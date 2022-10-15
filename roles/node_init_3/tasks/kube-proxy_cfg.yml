@@ -1,0 +1,15 @@
+- name: copy kube-proxy cfg 1 
+  copy: src=/tmp/kube-proxy.kubeconfig dest=/etc/kubernetes/
+  tags: kube-proxy_cfg 
+
+- name: copy kube-proxy cfg 2
+  copy: src=kube-proxy.service dest=/usr/lib/systemd/system/
+  tags: kube-proxy_cfg
+
+- name: copy kube-proxy cfg 3
+  copy: src=kube-proxy.conf dest=/etc/kubernetes/
+  tags: kube-proxy_cfg
+
+- name: copy kube-proxy cfg 4
+  copy: src=kube-proxy.yml dest=/etc/kubernetes/
+  tags: kube-proxy_cfg

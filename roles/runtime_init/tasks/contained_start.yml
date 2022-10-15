@@ -1,0 +1,11 @@
+- name: daemon-reload
+  systemd: daemon_reload=yes
+  tags: contained_start
+
+- name: init service containerd
+  service:
+    name: containerd
+    enabled: yes 
+    state: started
+  tags: contained_start
+      

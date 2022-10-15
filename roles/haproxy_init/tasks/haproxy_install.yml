@@ -1,0 +1,6 @@
+- name: install service keepalived and haproxy
+  dnf:
+    name:
+     - keepalived
+     - haproxy
+  tags: haproxy_install

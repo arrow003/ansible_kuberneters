@@ -1,0 +1,36 @@
+- name: coredns cfg
+  copy:
+    src: coredns.yaml
+    dest: /root/
+    owner: root
+    group: root
+    mode: 0755
+  ignore_errors: True
+  tags: coredns
+
+- name: cat calico-etcd.yaml
+  shell: grep "clusterIP" /root/coredns.yaml 
+  ignore_errors: True
+  register: result1
+  tags: coredns
+
+- debug:
+    var: result1.stdout
+
+- name: create coredns
+  shell: kubectl apply -f /root/coredns.yaml
+  ignore_errors: True
+  register: result2
+  tags: coredns
+
+- debug:
+    var: result2.stdout
+
+- name: check 
+  shell: kubectl get po -n kube-system -l k8s-app=kube-dns
+  ignore_errors: True
+  register: result3
+  tags: calico
+
+- debug:
+    var: result3.stdout

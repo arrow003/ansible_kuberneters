@@ -1,0 +1,8 @@
+- name: mkdir kube
+  file:
+    path: /root/.kube
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+  tags: mkdir_kube

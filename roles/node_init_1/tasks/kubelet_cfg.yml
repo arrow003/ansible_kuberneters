@@ -1,0 +1,12 @@
+- name: copy kubelet cfg 1 
+  copy: src=kubelet.service dest=/usr/lib/systemd/system/
+  tags: kubelet_cfg 
+
+- name: copy kubelet cfg 2
+  copy: src=10-kubelet.conf dest=/etc/systemd/system/kubelet.service.d/
+  tags: kubelet_cfg
+
+- name: copy kubelet cfg 3
+  copy: src=kubelet-conf.yml dest=/etc/kubernetes/
+  tags: kubelet_cfg
+

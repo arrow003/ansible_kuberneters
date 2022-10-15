@@ -1,0 +1,46 @@
+- name: busybox cfg
+  copy:
+    src: busybox.yaml
+    dest: /root/
+    owner: root
+    group: root
+    mode: 0755
+  ignore_errors: True
+  tags: check_cluster
+
+- name: create busybox 
+  shell: kubectl apply -f /root/busybox.yaml
+  ignore_errors: True
+  register: result1
+  tags: check_cluster
+
+- debug:
+    var: result1.stdout
+
+- name: check pod busybox
+  shell: kubectl get po
+  ignore_errors: True
+  register: result2
+  tags: check_cluster
+
+- debug:
+    var: result2.stdout
+
+- name: check cluster 1 
+  shell: kubectl exec  busybox -n default -- nslookup kubernetes
+  ignore_errors: True
+  register: result3
+  tags: check_cluster
+
+- debug:
+    var: result3.stdout
+
+
+- name: check cluster 2
+  shell: kubectl exec  busybox -n default -- nslookup kube-dns.kube-system 
+  ignore_errors: True
+  register: result4
+  tags: check_cluster
+
+- debug:
+    var: result4.stdout

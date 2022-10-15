@@ -1,0 +1,4 @@
+- name: make kubernetes package dir
+  shell: mkdir -p /opt/cni/bin /etc/kubernetes/manifests/ /etc/systemd/system/kubelet.service.d/ /var/lib/kubelet/ /var/log/kubernetes/
+  ignore_errors: yes
+  tags: make_kubernetes_package_dir

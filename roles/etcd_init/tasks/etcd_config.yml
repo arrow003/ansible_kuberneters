@@ -1,0 +1,17 @@
+- name: etcd config 1
+  copy: src={{inventory_hostname}}_etcd.config.yml dest=/etc/etcd/
+  tags: etcd_config
+
+- name: etcd config 2
+  shell: mv /etc/etcd/{{inventory_hostname}}_etcd.config.yml /etc/etcd/etcd.config.yml
+  tags: etcd_config
+
+- name: etcd config 3
+  copy: src=etcd.service dest=/usr/lib/systemd/system/
+  tags: etcd_config
+
+- name: etcd config 4
+  shell: mkdir -p /etc/kubernetes/pki/etcd && ln -s /etc/etcd/ssl/* /etc/kubernetes/pki/etcd/ 
+  ignore_errors: yes
+  tags: etcd_config
+

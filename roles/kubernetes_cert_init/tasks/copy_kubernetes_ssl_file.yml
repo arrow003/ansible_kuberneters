@@ -1,0 +1,5 @@
+- name: copy kubernetes ssl file
+  copy:
+    src: kubernetes/pki/ 
+    dest: /etc/kubernetes/pki 
+  tags: copy_kubernetes_ssl_file

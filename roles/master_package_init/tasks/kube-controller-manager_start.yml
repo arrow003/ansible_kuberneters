@@ -1,0 +1,10 @@
+- name: daemon-reload
+  systemd: daemon_reload=yes
+  tags: kube-controller-manager_start 
+
+- name: init service kube-controller-manager 
+  service:
+    name: kube-controller-manager 
+    enabled: yes 
+    state: started
+  tags: kube-controller-manager_start 

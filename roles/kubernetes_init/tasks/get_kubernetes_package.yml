@@ -1,0 +1,6 @@
+- name: download kubernetes package
+  get_url:
+    url=https://dl.k8s.io/v1.23.0/kubernetes-server-linux-amd64.tar.gz
+    dest=/opt
+    validate_certs=no
+  tags: get_kubernetes_package

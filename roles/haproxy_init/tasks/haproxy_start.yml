@@ -1,0 +1,17 @@
+- name: daemon-reload
+  systemd: daemon_reload=yes
+  tags: haproxy_start
+
+- name: init service haproxy
+  service:
+    name: haproxy
+    enabled: yes 
+    state: started
+  tags: haproxy_start
+
+- name: init service keepalived
+  service:
+    name: keepalived
+    enabled: yes
+    state: started
+  tags: haproxy_start

@@ -1,0 +1,4 @@
+- import_tasks: contained_install.yml
+- import_tasks: contained_config.yml
+- import_tasks: contained_start.yml
+- import_tasks: contained_test.yml

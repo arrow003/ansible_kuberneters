@@ -1,0 +1,27 @@
+- name: metrics-server cfg
+  copy:
+    src: metrics-server.yaml
+    dest: /root/
+    owner: root
+    group: root
+    mode: 0755
+  ignore_errors: True
+  tags: metrics-server
+
+- name: create metrics-server 
+  shell: kubectl apply -f /root/metrics-server.yaml
+  ignore_errors: True
+  register: result1
+  tags: metrics-server
+
+- debug:
+    var: result1.stdout
+
+- name: check k8s resource
+  shell: kubectl  top node
+  ignore_errors: True
+  register: result2
+  tags: metrics-server
+
+- debug:
+    var: result2.stdout

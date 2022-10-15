@@ -1,0 +1,2 @@
+- import_tasks: kube-proxy_cfg.yml
+- import_tasks: kube-proxy_start.yml

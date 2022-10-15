@@ -1,0 +1,84 @@
+---
+# all k8s server runtime init
+- hosts: k8s_all
+  gather_facts: no
+  roles:
+    - runtime_init 
+
+# etcd cert init
+- hosts: k8s_etcd 
+  gather_facts: no
+  roles:
+    - etcd_cert_init
+
+# kubernetes cert init
+- hosts: k8s_all 
+  gather_facts: no
+  roles:
+    - kubernetes_cert_init
+
+# kubernetes etcd init 
+- hosts: k8s_etcd 
+  gather_facts: no
+  roles:
+    - etcd_init 
+
+# kubernetes init 
+- hosts: k8s_all
+  gather_facts: no
+  roles:
+    - kubernetes_init
+
+# haproxy and keeplived init 
+- hosts: k8s_master 
+  gather_facts: no
+  roles:
+    - haproxy_init 
+
+# master package init 
+- hosts: k8s_master 
+  gather_facts: no
+  roles:
+    - master_package_init 
+
+# bootstrap init
+- hosts: k8s_all
+  gather_facts: no
+  roles:
+    - bootstrap_init 
+
+# node init kubelet start
+- hosts: k8s_all
+  gather_facts: no
+  roles:
+    - node_init_1
+
+# node init kube-proxy create cfg
+- hosts: k8s-master01
+  gather_facts: no
+  roles:
+    - node_init_2
+
+# node init kube-proxy start
+- hosts: k8s_all
+  gather_facts: no
+  roles:
+    - node_init_3
+
+# calico init
+- hosts: k8s-master01
+  gather_facts: no
+  roles:
+    - calico_init 
+ 
+# coredns init
+- hosts: k8s-master01
+  gather_facts: no
+  roles:
+    - coredns_init 
+
+# coredns init
+- hosts: k8s-master01
+  gather_facts: no
+  roles:
+    - metrics-server_init 

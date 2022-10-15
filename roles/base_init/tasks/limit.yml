@@ -1,0 +1,19 @@
+- name: set limit 1 
+  shell: ulimit -SHn 65535 
+  tags: set limit
+
+- name: set limit 2
+  lineinfile:
+    backup: yes
+    path: /etc/security/limits.conf
+    insertafter: '# End of file'
+    line: "{{ item }}"
+    state: present
+  with_items:
+    - '* soft nofile 655360'
+    - '* hard nofile 131072'
+    - '* soft nproc 655350'
+    - '* hard nproc 655350'
+    - '* soft memlock unlimited'
+    - '* hard memlock unlimited'
+  tags: set limit

@@ -1,0 +1,11 @@
+- name: containerd test
+  copy: src=crictl.yaml dest=/etc/ owner=root group=root mode=0644
+  tags: containerd_test 
+
+- name: containerd ctr test
+  shell: ctr image ls
+  register: result
+  tags: containerd_test
+
+- debug:
+    var: result.stdout

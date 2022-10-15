@@ -1,0 +1,7 @@
+- name: copy kube-apiserver cfg 1 
+  copy: src={{inventory_hostname}}_kube-apiserver.service dest=/usr/lib/systemd/system/
+  tags: kube-apiserver_cfg 
+
+- name: copy kube-apiserver cfg 2 
+  shell: mv /usr/lib/systemd/system/{{inventory_hostname}}_kube-apiserver.service /usr/lib/systemd/system/kube-apiserver.service
+  tags: kube-apiserver_cfg 

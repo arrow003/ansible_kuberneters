@@ -1,0 +1,12 @@
+- name: install service chrony
+  dnf:
+    name:
+     - chrony
+  tags: chrony
+
+- name: init service chrony
+  service:
+    name: chronyd 
+    enabled: yes 
+    state: started
+  tags: chrony 

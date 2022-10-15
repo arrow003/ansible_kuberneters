@@ -1,0 +1,3 @@
+- name: copy kube-controller-manager cfg 
+  copy: src=kube-controller-manager.service dest=/usr/lib/systemd/system/
+  tags: kube-controller-manager_cfg 

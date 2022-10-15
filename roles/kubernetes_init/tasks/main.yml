@@ -1,0 +1,3 @@
+- import_tasks: get_kubernetes_package.yml 
+- import_tasks: unarchive_kubernetes_package.yml
+- import_tasks: mk_kubernetes_packagedir.yml

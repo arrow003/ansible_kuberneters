@@ -1,0 +1,10 @@
+- name: daemon-reload
+  systemd: daemon_reload=yes
+  tags: kubelet_start 
+
+- name: init service kubelet
+  service:
+    name: kubelet
+    enabled: yes 
+    state: started
+  tags: kubelet_start

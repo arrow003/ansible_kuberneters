@@ -1,0 +1,49 @@
+- name: get file calico-etcd.yaml
+  get_url:
+    url=https://docs.projectcalico.org/manifests/calico-etcd.yaml
+    dest=/root/
+    validate_certs=no
+  ignore_errors: True
+  tags: calico 
+
+- name: calico-etcd cfg 1
+  copy:
+    src: calico.sh
+    dest: /root/
+    owner: root
+    group: root
+    mode: 0755
+  ignore_errors: True
+  tags: calico
+
+- name: calico-etcd cfg 2
+  shell: sh /root/calico.sh
+  ignore_errors: True
+  tags: calico
+
+- name: cat calico-etcd.yaml
+  shell: grep "CALICO_IPV4POOL_CIDR" /root/calico-etcd.yaml -A 1
+  ignore_errors: True
+  register: result1
+  tags: calico
+
+- debug:
+    var: result1.stdout
+
+- name: create calico
+  shell: kubectl apply -f /root/calico-etcd.yaml
+  ignore_errors: True
+  register: result2
+  tags: calico
+
+- debug:
+    var: result2.stdout
+
+- name: check calico
+  shell: kubectl get po -n kube-system -l k8s-app=calico-node
+  ignore_errors: True
+  register: result3
+  tags: calico
+
+- debug:
+    var: result3.stdout

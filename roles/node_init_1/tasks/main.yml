@@ -1,0 +1,2 @@
+- import_tasks: kubelet_cfg.yml
+- import_tasks: kubelet_start.yml

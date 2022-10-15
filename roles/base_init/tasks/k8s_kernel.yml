@@ -1,0 +1,12 @@
+- name: k8s kernel set 1 
+  copy: src=k8s.conf dest=/etc/sysctl.d/ owner=root group=root mode=0644
+  tags: k8s_kernel 
+
+- name: k8s kernel set 2
+  shell: sysctl --system 
+  tags: k8s_kernel
+
+- name: Wait for server to restart
+  reboot:
+    reboot_timeout: 180
+  tags: k8s_kernel

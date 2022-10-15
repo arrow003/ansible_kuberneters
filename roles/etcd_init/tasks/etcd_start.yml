@@ -1,0 +1,18 @@
+- name: daemon-reload
+  systemd: daemon_reload=yes
+  tags: etcd_start
+
+- name: init service etcd
+  service:
+    name: etcd
+    enabled: yes 
+    state: started
+  tags: etcd_start
+
+- name: check etcd status
+  shell: export ETCDCTL_API=3 && etcdctl --endpoints="172.26.37.153:2379,172.26.37.152:2379,172.26.37.151:2379" --cacert=/etc/kubernetes/pki/etcd/etcd-ca.pem --cert=/etc/kubernetes/pki/etcd/etcd.pem --key=/etc/kubernetes/pki/etcd/etcd-key.pem  endpoint status --write-out=table 
+  register: result
+  tags: etcd_start 
+
+- debug:
+    var: result.stdout

@@ -1,0 +1,10 @@
+- import_tasks: hosts.yml 
+- import_tasks: repo.yml
+- import_tasks: tool_install.yml
+- import_tasks: service.yml
+- import_tasks: stop_swap.yml
+- import_tasks: stop_selinux.yml
+- import_tasks: chrony.yml
+- import_tasks: limit.yml
+- import_tasks: ipvs.yml
+- import_tasks: k8s_kernel.yml

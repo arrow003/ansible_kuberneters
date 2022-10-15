@@ -1,0 +1,19 @@
+- name: copy haproxy cfg 1
+  copy: src=haproxy.cfg dest=/etc/haproxy/
+  tags: haproxy_cfg
+
+- name: copy haproxy cfg 2
+  copy: src={{inventory_hostname}}_keepalived.conf dest=/etc/keepalived/
+  tags: haproxy_cfg 
+
+- name: copy haproxy cfg 3
+  shell: mv /etc/keepalived/{{inventory_hostname}}_keepalived.conf /etc/keepalived/keepalived.conf
+  tags: haproxy_cfg
+
+- name: copy haproxy cfg 4
+  copy: src=check_apiserver.sh dest=/etc/keepalived/
+  tags: haproxy_cfg
+
+- name: copy haproxy cfg 5
+  shell: chmod +x /etc/keepalived/check_apiserver.sh
+  tags: haproxy_cfg

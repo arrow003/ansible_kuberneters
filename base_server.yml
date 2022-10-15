@@ -1,0 +1,6 @@
+---
+# all k8s server base init
+- hosts: k8s_all
+  gather_facts: no
+  roles:
+    - base_init
